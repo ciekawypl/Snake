@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl4dgg6ekehso"]
+
+[ext_resource type="Script" path="res://Food/Food.gd" id="1_oum8l"]
+[ext_resource type="Texture2D" uid="uid://bjii07xsf0s1n" path="res://snaketileset.png" id="2_lhfvv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djeoq"]
+atlas = ExtResource("2_lhfvv")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sffb5"]
+size = Vector2(16, 16)
+
+[node name="Food" type="Area2D" groups=["Food"]]
+script = ExtResource("1_oum8l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_djeoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sffb5")

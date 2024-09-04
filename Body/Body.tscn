@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://6n3kdtxkwkmc"]
+
+[ext_resource type="Script" path="res://Body/Body.gd" id="1_apy61"]
+[ext_resource type="Texture2D" uid="uid://bjii07xsf0s1n" path="res://snaketileset.png" id="2_vy2by"]
+[ext_resource type="PackedScene" uid="uid://bc4sw6b48t2ab" path="res://Movement Component/Movement Component.tscn" id="3_48err"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svf73"]
+atlas = ExtResource("2_vy2by")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhixk"]
+size = Vector2(16, 16)
+
+[node name="Body" type="Area2D" node_paths=PackedStringArray("movement_component")]
+script = ExtResource("1_apy61")
+movement_component = NodePath("MovementComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_svf73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yhixk")
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("anchor") instance=ExtResource("3_48err")]
+anchor = NodePath("..")

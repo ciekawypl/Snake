@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4upekjts7yl4"]
+
+[ext_resource type="Script" path="res://Tail/Tail.gd" id="1_rp6ux"]
+[ext_resource type="Texture2D" uid="uid://bjii07xsf0s1n" path="res://snaketileset.png" id="2_nmecx"]
+[ext_resource type="PackedScene" uid="uid://bc4sw6b48t2ab" path="res://Movement Component/Movement Component.tscn" id="3_yjlw8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcsde"]
+atlas = ExtResource("2_nmecx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8a3q"]
+size = Vector2(16, 16)
+
+[node name="Tail" type="Area2D" node_paths=PackedStringArray("movement_component")]
+script = ExtResource("1_rp6ux")
+movement_component = NodePath("MovementComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_fcsde")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o8a3q")
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("anchor") instance=ExtResource("3_yjlw8")]
+anchor = NodePath("..")
