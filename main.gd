@@ -33,19 +33,20 @@ func add_segment(new_position : Vector2):
 
 
 func spawn_food():
-	var busy_spots = []
-	busy_spots.append(tile_map.local_to_map(player.global_position))
-	for segment in segments:
-		busy_spots.append(tile_map.local_to_map(segment.global_position))
-	
 	var new_position : Vector2
+	
+	var busy = []
+	for segment in segments:
+		busy.append(tile_map.local_to_map(segment.global_position))
+	
 	while true:
-		new_position = Vector2(randi_range(1, 10), randi_range(1, 10))
-		if not busy_spots.has(new_position):
-			break
+		new_position = tile_map.map_to_local(Vector2(randi_range(1, 10), randi_range(1, 10)))
+		if busy.has(tile_map.local_to_map(new_position)):
+			continue
+		break
 	
 	var new_food = food.instantiate()
-	new_food.global_position = tile_map.map_to_local(new_position)
+	new_food.global_position = new_position
 	get_tree().root.add_child(new_food)
 
 
